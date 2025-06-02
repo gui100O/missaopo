@@ -13,6 +13,23 @@ class Produto:
     def emitir_nota(self):
         print(f"Nota gerada para {self.nome}.")
 
+    # Controle de estoque
+    def repor(self, quantidade):
+        if quantidade > 0:
+            self.estoque += quantidade
+            print(f"Estoque de '{self.nome}' aumentado em {quantidade}. Novo estoque: {self.estoque}")
+        else:
+            print("Quantidade inválida para reposição.")
+
+    def vender(self, quantidade):
+        if quantidade <= 0:
+            print("Quantidade inválida para venda.")
+        elif quantidade > self.estoque:
+            print(f"Venda não realizada. Estoque insuficiente de '{self.nome}'. Disponível: {self.estoque}")
+        else:
+            self.estoque -= quantidade
+            print(f"Venda de {quantidade} unidades de '{self.nome}' realizada. Estoque restante: {self.estoque}")
+
 
 class ProdutoNac(Produto):
     def __init__(self, nome, preco, estoque):
